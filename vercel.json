@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "src/**",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "src/$1"
+    }
+  ],
+  "env": {
+    "ALPHA_VANTAGE_API_KEY": "@alpha_vantage_api_key",
+    "CRYPTOPANIC_API_KEY": "@cryptopanic_api_key",
+    "COINMARKETCAP_API_KEY": "@coinmarketcap_api_key"
+  }
+} 
